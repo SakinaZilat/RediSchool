@@ -16,6 +16,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Created by zilat on 31.05.2017.
  */
+/**
+ * @author zilat
+ *
+ */
 @Entity
 @Table(name = "Rating")
 public class Rating {
@@ -36,10 +40,13 @@ public class Rating {
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
+     
     
-    @ManyToOne
-	@JoinColumn(name = "experience_id", nullable = false)
-	private Experience experience;
+    @Column(name = "experience_id", nullable = false)
+    private long experience_id;
+    
+    @Column(name = "user_id", nullable = false)
+    private long user_id;
     
     public Rating() {
     }
@@ -93,16 +100,26 @@ public class Rating {
 	}
 
 
-	public Experience getExperience()
-	{
-		return experience;
+	public long getExperience_id() {
+		return experience_id;
 	}
 
 
-	public void setExperience(Experience experience)
-	{
-		this.experience = experience;
-	} 
+	public void setExperience_id(long experience_id) {
+		this.experience_id = experience_id;
+	}
+
+
+	public long getUser_id() {
+		return user_id;
+	}
+
+
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
+	}
+
+
 	
 	
     

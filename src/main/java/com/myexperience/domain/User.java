@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,8 +43,9 @@ public class User {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registredDate;
     
-    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Experience> experiences;
+    
 
     public User() {
     }

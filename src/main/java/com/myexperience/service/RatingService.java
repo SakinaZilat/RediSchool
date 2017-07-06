@@ -24,6 +24,13 @@ public class RatingService
 	{
 		return this.ratingRepository.findAll();
 	}
+
+	
+
+	public List<Rating> findRatingGreaterThan(int ratingGreaterThan) {
+		
+		return this.ratingRepository.findByRatingGreaterThan(ratingGreaterThan);
+	}
 	
 	
 	

@@ -47,8 +47,6 @@ public class Experience {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
     
-    @OneToMany(mappedBy="experience", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-    private List<Rating> ratings;
 	
     public Experience() {
     }
@@ -113,16 +111,5 @@ public class Experience {
 		this.user = user;
 	}
 
-
-	public List<Rating> getRatings()
-	{
-		return ratings;
-	}
-
-
-	public void setRatings(List<Rating> ratings)
-	{
-		this.ratings = ratings;
-	}
 	    
 }

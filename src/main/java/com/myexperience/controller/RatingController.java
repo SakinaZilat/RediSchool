@@ -35,6 +35,16 @@ public class RatingController
 		return new ResponseEntity<>(ratingList, HttpStatus.OK);		
 	}
 	
+	@RequestMapping(value = "/ratings/{ratingGreaterThan}", method = RequestMethod.GET)
+	public ResponseEntity<List<Rating>> getRatingsGreaterThan(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "ratingGreaterThan") @PathVariable("ratingGreaterThan") int ratingGreaterThan
+			)
+	{
+		List<Rating> ratingList = ratingService.findRatingGreaterThan(ratingGreaterThan);
+		return new ResponseEntity<>(ratingList, HttpStatus.OK);		
+	}
+	
 	@RequestMapping(value = "/rating", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Rating create(@RequestBody Rating rating, @ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version)
