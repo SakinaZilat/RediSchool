@@ -35,6 +35,16 @@ public class ExperienceController
 		return new ResponseEntity<>(experienceList, HttpStatus.OK);		
 	}
 	
+	@RequestMapping(value = "/experiences/{createdLastDays}", method = RequestMethod.GET)
+	public ResponseEntity<List<Experience>> getExperiencesCreatedLastDays(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "createdLastDays") @PathVariable("createdLastDays") int createdLastDays
+			)
+	{
+		List<Experience> experienceList = experienceService.findExperiencesCreatedLastDays(createdLastDays);
+		return new ResponseEntity<>(experienceList, HttpStatus.OK);		
+	}
+	
 	@RequestMapping(value = "/experience", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Experience create(@RequestBody Experience experience, @ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version)

@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Created by zilat on 31.05.2017.
  */
@@ -87,7 +89,7 @@ public class Experience {
 		this.body = body;
 	}
 
-
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	public Date getCreatedDate()
 	{
 		return createdDate;
