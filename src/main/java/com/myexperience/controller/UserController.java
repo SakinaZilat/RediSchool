@@ -73,4 +73,19 @@ public class UserController
 		List<User> userList = userService.findUsersByLastNameAndFistName(lastname, firstname);
 		return new ResponseEntity<>(userList, HttpStatus.OK);		
 	}
+
+	@RequestMapping(value = "/user/login/{username}/{password}", method = RequestMethod.GET)
+	public ResponseEntity<HttpStatus> logintolist(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "username", defaultValue ="m") @PathVariable("username") String  username,
+			@ApiParam(name = "password",defaultValue = "1") @PathVariable("password") String password
+	)
+	{
+
+		Boolean userFound=userService.login(username,password);
+		if (userFound)
+			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		else
+			return new ResponseEntity<HttpStatus>(HttpStatus.UNAUTHORIZED);
+	}
 }

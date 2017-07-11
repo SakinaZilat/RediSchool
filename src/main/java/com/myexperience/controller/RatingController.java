@@ -24,8 +24,7 @@ public class RatingController
 {
 	@Autowired
 	private RatingService ratingService;
-	
-	
+
 	@RequestMapping(value = "/ratings", method = RequestMethod.GET)
 	public ResponseEntity<List<Rating>> getAllRatings(
 			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version
@@ -40,7 +39,15 @@ public class RatingController
 	public Rating create(@RequestBody Rating rating, @ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version)
 	{
 		return ratingService.add(rating);
-		
+	}
+	@RequestMapping(value = "/rating/Graterthan", method = RequestMethod.GET)
+	public ResponseEntity<List<Rating>> getRatingGraterThan3(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "Graterthan", defaultValue ="3") @PathVariable("Graterthan") int Graterthan
+	)
+	{
+		List<Rating> ratingList = ratingService.findByRatingGreaterThan(Graterthan);
+		return new ResponseEntity<>(ratingList, HttpStatus.OK);
 	}
 
 }

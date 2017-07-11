@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 /**
  * Created by zilat on 31.05.2017.
@@ -27,7 +28,7 @@ public class User {
     @Column(unique = true, nullable = false, precision = 19)
     private long id;
 
-    @Column(name = "firstName", length = 255, nullable = false)
+    @Column(name = "firstName", length =255, nullable = false)
     private String firstName;
     
     @Column(name = "lastName", length = 255, nullable = false)
@@ -36,11 +37,16 @@ public class User {
     @Column(name = "email", length = 255, nullable = false)
     private String email;
 
+	@Column(name = "userName", length = 255, nullable = false)
+	private String userName;
+
+	@Column(name = "passWord", length = 255, nullable = false)
+	private String passWord;
+
     @Column(name = "registredDate", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private Date registredDate;
-    
+
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     private List<Experience> experiences;
 
@@ -74,7 +80,7 @@ public class User {
 
 	public void setLastName(String lastName)
 	{
-		this.lastName = lastName;
+		this.lastName = lastName.toUpperCase();
 	}
 
 	
@@ -88,6 +94,7 @@ public class User {
 		this.email = email;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	public Date getRegistredDate()
 	{
 		return registredDate;
@@ -97,6 +104,20 @@ public class User {
 	{
 		this.registredDate = registredDate;
 	}
-  
-    
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
 }

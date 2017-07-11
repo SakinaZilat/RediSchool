@@ -43,4 +43,14 @@ public class ExperienceController
 		
 	}
 
+	@RequestMapping(value = "/experience/lastDays/{filterDate}", method = RequestMethod.GET)
+	public ResponseEntity<List<Experience>> allExperienceCreatedLastWeek(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "filterDate",defaultValue ="7")@PathVariable("filterDate") int filterDate
+	)
+	{
+		List<Experience> experienceListForLastWeek = experienceService.findByStartDateAfter(filterDate);
+		return new ResponseEntity<>(experienceListForLastWeek, HttpStatus.OK);
+	}
+
 }
