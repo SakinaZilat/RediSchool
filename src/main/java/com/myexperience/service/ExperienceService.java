@@ -1,6 +1,8 @@
 package com.myexperience.service;
 import java.util.Date;
 import java.util.List;
+
+import com.myexperience.domain.ExperienceCategory;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,8 @@ public class ExperienceService
 		{
 			DateTime dTime=new DateTime(new Date());
 			experience.setCreatedDate(dTime.toDate());
-			LOGGER.info("The Current Date to Add new User is: "+dTime.toString());
+			experience.setCategory(ExperienceCategory.Arbeit.toString());
+			LOGGER.info("The Current Date to Add new User is: "+dTime.toString()+" the category is  "+experience.getCategory().toString());
 			experienceRepository.save(experience);
 		}
 		return experience;
