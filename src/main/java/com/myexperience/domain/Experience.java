@@ -26,13 +26,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "Experience")
 public class Experience {
 
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(unique = true, nullable = false, precision = 19)
     private long id;
 
-    
-    @Column(name = "title", length = 255, nullable = false)
+	@Column(name = "category", length = 255, nullable = false)
+    private String category;
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	@Column(name = "title", length = 255, nullable = false)
     private String title;
     
     @Column(name = "body", columnDefinition="TEXT", nullable = false)
