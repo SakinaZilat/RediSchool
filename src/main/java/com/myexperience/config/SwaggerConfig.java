@@ -56,7 +56,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter
 	@Bean
 	public Docket petApi()
 	{
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(new ApiInfo("MyExperienceService REST API", "MyExperienceService REST API", env.getProperty("info.build.version"), "", "zilatsakina@redischool.com", "", "")).select().paths(paths()).build().directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class).alternateTypeRules(newRule(typeResolver.resolve(DeferredResult.class, typeResolver.resolve(ResponseEntity.class, WildcardType.class)), typeResolver.resolve(WildcardType.class))).useDefaultResponseMessages(false).globalResponseMessage(RequestMethod.GET, newArrayList(new ResponseMessageBuilder().code(500).message("500 message").responseModel(new ModelRef("Error")).build())).enableUrlTemplating(false).directModelSubstitute(Date.class, String.class);
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(new ApiInfo("MyExperienceService REST API", "MyExperienceService REST API", env.getProperty("info.build.version"), "", "javabackendteam@redischool.com", "", "")).select().paths(paths()).build().directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class).alternateTypeRules(newRule(typeResolver.resolve(DeferredResult.class, typeResolver.resolve(ResponseEntity.class, WildcardType.class)), typeResolver.resolve(WildcardType.class))).useDefaultResponseMessages(false).globalResponseMessage(RequestMethod.GET, newArrayList(new ResponseMessageBuilder().code(500).message("500 message").responseModel(new ModelRef("Error")).build())).enableUrlTemplating(false).directModelSubstitute(Date.class, String.class);
 	}
 	
 	@Override
