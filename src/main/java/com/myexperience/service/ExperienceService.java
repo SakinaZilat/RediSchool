@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myexperience.domain.CategoryType;
 import com.myexperience.domain.Experience;
 import com.myexperience.repository.ExperienceRepository;
 
@@ -21,13 +22,8 @@ public class ExperienceService
 	private final static Logger LOGGER = LoggerFactory.getLogger(ExperienceService.class);
 	
 	public Experience add(Experience experience)
-	{
-		String experienceBody = experience.getBody();
-		if (experienceBody.length() > 50)
-		{
-			experienceRepository.save(experience);
-		}
-		return experience;
+	{					
+		return experienceRepository.save(experience);
 	}
 	
 	public List<Experience> findAll()
@@ -41,6 +37,11 @@ public class ExperienceService
 		comparaisonDate= comparaisonDate.minusDays(createdLastDays);
 		LOGGER.info("comparaisonDate" + comparaisonDate );
 		return this.experienceRepository.findByCreatedDateAfter(comparaisonDate.toDate());
+	}
+
+	public List<Experience> findExperiencesByCategory(CategoryType category) {
+		return this.experienceRepository.findByCategory(category);
+		
 	}
 	
 }

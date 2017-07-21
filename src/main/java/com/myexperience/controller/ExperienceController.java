@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myexperience.domain.CategoryType;
 import com.myexperience.domain.Experience;
 import com.myexperience.service.ExperienceService;
 
@@ -42,6 +43,16 @@ public class ExperienceController
 			)
 	{
 		List<Experience> experienceList = experienceService.findExperiencesCreatedLastDays(createdLastDays);
+		return new ResponseEntity<>(experienceList, HttpStatus.OK);		
+	}
+	
+	@RequestMapping(value = "/experiences/category/{category}", method = RequestMethod.GET)
+	public ResponseEntity<List<Experience>> getExperiencesCreatedLastDays(
+			@ApiParam(name = "version", defaultValue = "v1") @PathVariable("version") String version,
+			@ApiParam(name = "category") @PathVariable("category") CategoryType category
+			)
+	{
+		List<Experience> experienceList = experienceService.findExperiencesByCategory(category);
 		return new ResponseEntity<>(experienceList, HttpStatus.OK);		
 	}
 	
